@@ -1,4 +1,4 @@
-name: Build_Php-v8js
+name: Build
 
 on: 
   release:
