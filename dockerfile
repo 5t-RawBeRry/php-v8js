@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y build-essential curl git python libglib
     ./configure --with-v8js=/usr/local/v8 LDFLAGS="-lstdc++" CPPFLAGS="-DV8_COMPRESS_POINTERS"; \
     make; \
     make install; \
-    rm -rf /tmp/v8js /tmp/v8 /tmp/depot_tools; \
+    rm -rf /tmp/v8js /tmp/v8 /tmp/depot_tools /usr/local/v8; \
     apt-get remove build-essential patchelf libglib2.0-dev -y; \
     apt-get autoremove --purge -y; \
     apt-get clean -y; \
