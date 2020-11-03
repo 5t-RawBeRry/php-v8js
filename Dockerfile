@@ -1,7 +1,8 @@
 FROM php:cli-buster
 
-RUN apt-get update && apt-get install -y build-essential curl git python libglib2.0-dev patchelf; \
-    cd /tmp; \
+RUN apt-get update && apt-get install -y build-essential curl git python libglib2.0-dev patchelf;
+
+RUN cd /tmp; \
     git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git; \
     export PATH=`pwd`/depot_tools:"$PATH"; \
     fetch v8; \
@@ -22,10 +23,12 @@ RUN apt-get update && apt-get install -y build-essential curl git python libglib
     phpize; \
     ./configure --with-v8js=/usr/local/v8 LDFLAGS="-lstdc++" CPPFLAGS="-DV8_COMPRESS_POINTERS"; \
     make; \
-    make install; \
-    rm -rf /tmp/v8js /tmp/v8 /tmp/depot_tools /usr/local/v8; \
+    make install; 
+    
+RUN rm -rf /tmp/v8js /tmp/v8 /tmp/depot_tools /usr/local/v8; \
     apt-get remove build-essential patchelf libglib2.0-dev -y; \
     apt-get autoremove --purge -y; \
-    apt-get clean -y; \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
+    apt-get clean -y; 
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     docker-php-ext-enable v8js.so;
