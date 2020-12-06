@@ -3,8 +3,8 @@ name: BUILD PHP V8JS
 
 on:
   workflow_dispatch:
-  schedule: 
-    - cron: '10 6 * * *' 
+#  schedule: 
+#    - cron: '10 6 * * *' 
 
 jobs:
   build:
